@@ -29,6 +29,7 @@ import { openai } from '@ai-sdk/openai';
 import { z } from 'zod';
 import { encodeFunctionData, parseAbi } from 'viem';
 import { getRecallData } from '@/lib/recall/recallUtils';
+import { tokens } from '@/lib/utils';
 
 export const maxDuration = 60;
 
@@ -118,9 +119,7 @@ export async function POST(request: Request) {
                   Given a user request you should first use the getContractLevelInteractionChain tool to get the chain of contract interactions that are needed to fulfill the user request as well as all of the information you need to acquire from the user. 
                   By default assume that the chain that the user is operating on is Base.
                   When dealing with assets, make sure that you are using the correct contract address for the asset. Injected below is a list of popular assets and their contract addresses on Base. If the user is asking for an asset not included here then make sure to clarify the contract address with the user.
-                  {
-                    "USDC": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-                  }
+                  ${JSON.stringify(tokens)}
                  For each Contract-Level Interaction, you should use the executeContractLevelInteraction tool to execute the transaction.
                  You should only call the executeContractLevelInteraction tool on one step at a time. Do not call it on multiple steps without first waiting for a step to finish.
                  You should evaluate the messages below to determine where you are in the process of fulfilling the user request prior to proceeding.
