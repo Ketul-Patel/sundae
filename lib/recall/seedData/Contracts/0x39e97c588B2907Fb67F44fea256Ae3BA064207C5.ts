@@ -1,4 +1,4 @@
-{
+export const L2EncoderContract = {
     "key": "contracts/AaveV3/0x39e97c588B2907Fb67F44fea256Ae3BA064207C5",
     "content": {
         "name": "L2Encoder",

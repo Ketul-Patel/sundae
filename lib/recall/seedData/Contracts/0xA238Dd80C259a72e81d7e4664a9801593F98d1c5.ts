@@ -1,4 +1,4 @@
-{
+export const L2PoolContract = {
     "key": "contracts/AaveV3/0xA238Dd80C259a72e81d7e4664a9801593F98d1c5",
     "content": {
         "name": "AaveV3 L2 Pool",

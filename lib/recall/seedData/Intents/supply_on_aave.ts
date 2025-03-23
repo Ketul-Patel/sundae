@@ -1,23 +1,13 @@
-{
-    "key": "intents/defi/supply_on_aave",
+export const AaveSupplyIntent = {
+    "key": "intents/defi/supply_usdc_on_aave",
     "content": {
-        "shortDescription": "Supply a given asset on Aave",
-        "longDescription": "Supply a given asset on AaveV3 on a given chain. The user needs to provide the asset to supply, the amount of the asset to supply and the chain to supply the asset on. Users will typically supply assets on Aave to earn a yield by providing liquidity to the protocol. Aave is a leading DeFi lending protocol for providing liquidity to borrowers.",
+        "shortDescription": "Supply USDC on AaveV3 on Base",
+        "longDescription": "Supply USDC on AaveV3 on Base. The user needs to provide the amount of USDC to supply. Users will typically supply assets on Aave to earn a yield by providing liquidity to the protocol. Aave is a leading DeFi lending protocol for providing liquidity to borrowers.",
         "variables": [
-            {
-                "name": "asset",
-                "type": "string",
-                "description": "The asset to supply"
-            },
             {
                 "name": "amount",
                 "type": "string",
                 "description": "The amount of the asset to supply"
-            },
-            {
-                "name": "chain",
-                "type": "string",
-                "description": "The chain to supply the asset on"
             }
         ],
         "clic": [
@@ -48,6 +38,26 @@
             },
             {
                 "step": "2",
+                "type": "writeContract",
+                "description": "Approve the AaveV3 L2 Pool contract to spend the user's USDC. This is required before supplying assets to the protocol.",
+                "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                "functionName": "approve",
+                "functionArgs": [
+                    {
+                        "name": "spender",
+                        "type": "address",
+                        "description": "The address of the AaveV3 L2 Pool contract that will be approved to spend the USDC"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256",
+                        "description": "The amount of USDC to approve for spending"
+                    }
+                ],
+                "recallKey": "contracts/ERC20/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+            },
+            {
+                "step": "3",
                 "type": "writeContract",
                 "description": "Call the supply function on the AaveV3 L2 Pool contract to supply the asset using the encoded parameters from step 1.",
                 "contractAddress": "0xA238Dd80C259a72e81d7e4664a9801593F98d1c5",

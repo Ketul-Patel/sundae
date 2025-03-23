@@ -3,9 +3,9 @@ import { RecallClient } from "@recallnet/sdk/client";
 import { createWalletClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { parseEther } from "viem/utils";
-import AaveSupplyIntent from "./seedData/Intents/supply_on_aave.json";
-import L2EncoderContract from "./seedData/Contracts/0x39e97c588B2907Fb67F44fea256Ae3BA064207C5.json";
-import L2PoolContract from "./seedData/Contracts/0xA238Dd80C259a72e81d7e4664a9801593F98d1c5.json";
+import { AaveSupplyIntent } from "./seedData/Intents/supply_on_aave";
+import { L2EncoderContract } from "./seedData/Contracts/0x39e97c588B2907Fb67F44fea256Ae3BA064207C5";
+import { L2PoolContract } from "./seedData/Contracts/0xA238Dd80C259a72e81d7e4664a9801593F98d1c5";
 
 const privateKey = process.env.PRIVATE_KEY;
 const walletClient = createWalletClient({
